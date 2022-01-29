@@ -1,17 +1,53 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
-void solve(double meal_cost, int tip_percent, int tax_percent)
-{
-    double tip = (meal_cost * tip_percent / 100);
-    double tax = (meal_cost * tax_percent) / 100;
+string ltrim(const string &);
+string rtrim(const string &);
 
-    double total_cost = meal_cost + tip + tax;
-
-    int total_bill = round(total_cost);
-
-    cout << total_bill << endl;
-}
 int main()
 {
+    string N_temp;
+    getline(cin, N_temp);
+
+    int N = stoi(ltrim(rtrim(N_temp)));
+    if (N % 2 != 0)
+    {
+        cout << "Weird" << endl;
+    }
+    else if (N % 2 == 0 && 1 < N && N < 6)
+    {
+        cout << "Not Weird" << endl;
+    }
+    else if (N % 2 == 0 && 5 < N && N < 21)
+    {
+        cout << "Weird" << endl;
+    }
+    else if (N % 2 == 0 && N > 20)
+    {
+        cout << "Not Weird" << endl;
+    }
+    return 0;
+}
+
+string ltrim(const string &str)
+{
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace))));
+
+    return s;
+}
+
+string rtrim(const string &str)
+{
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end());
+
+    return s;
 }
